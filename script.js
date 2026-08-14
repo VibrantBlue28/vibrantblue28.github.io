@@ -90,8 +90,8 @@
                 button.setAttribute("data-gallery-caption", item.alt || product.name);
                 image.src = item.path;
                 image.alt = item.alt || product.name;
-                image.width = 1000;
-                image.height = 1000;
+                image.width = 1024;
+                image.height = 1024;
                 image.loading = "lazy";
                 image.decoding = "async";
                 button.appendChild(image);
