@@ -56,7 +56,7 @@ SEO 變更完成後，要以正式網站檢查 HTTP 回應、Canonical、robots�
 
 ### 商品展示管理規格（2026-08-14）
 
-首頁商品展示區位於「門市特色」之後、「門市環境」之前；目前已建立 `KISSTOY Doris` 商品卡，使用 7 張使用者提供的展示圖片。商品資料集中於 `site-content.js`，圖片放在 `images/products/<商品代號>/`；不可直接引用 `Product_Images/`。
+首頁商品展示區位於「門市特色」之後、「門市環境」之前；目前已建立 `KISSTOY Doris` 商品卡，使用 7 張使用者提供的展示圖片。商品展示是一個獨立區塊，只讀取 `images/products/`：圖片放在 `images/products/<商品代號>/`，目錄與文案放在 `images/products/catalog.js`。首頁、`site-content.js` 與其他網站檔案不再保存商品資料。
 
 後續以 Shop Ads Studio 新增商品時，必須遵守以下規格：
 
@@ -67,6 +67,14 @@ SEO 變更完成後，要以正式網站檢查 HTTP 回應、Canonical、robots�
 5. 商品圖片由 Studio 產出或整理後，統一使用 **1024 × 1024** 正方形素材。網站圖片必須完整以 1:1 顯示、不可裁切；手機版一次顯示一張完整圖片，可左右滑動切換下一張。
 6. 每項商品須保留：名稱、客觀短說明、圖片、更新小標題，以及「實際庫存、售價與包裝版本以門市現場為準」註記。不得猜測商品名稱、效果、價格、成分、活動日期或庫存。
 7. Studio 的「新增商品」與「移除最舊商品」是網站內容管理操作，不等於發布；仍須由使用者明確要求後，才能使用發布工具更新 GitHub Pages。
+
+#### Store Ads 交接契約
+
+- Store Ads 日後更新網站商品時，只能更新 `D:\CASE\SC行銷\WebSite\images\products\`；該資料夾是唯一的商品展示來源。
+- `catalog.js` 必須設定 `products` 陣列，最多 3 筆，並依最新到最舊排序。每筆需有 `updatedLabel`、`name`、`description`、`footnote` 與 `images`。
+- 網站程式會只渲染前三筆，作為額外保護；Studio 仍應在產生 `catalog.js` 時主動移除第 4 筆以後的展示資料。
+- 原始活動素材已移至 `D:\CASE\SC行銷\Shop_ADs\campaigns\`，不屬於公開網站，也不可放回 `WebSite\images\campaigns\`。
+- 「更新 products 資料夾」只改變待發布內容；仍需由使用者明確執行或要求執行發布工具。
 
 接手 agent 在將素材公開前，仍必須逐張檢視圖片與包裝文字，並依本 README 的 Google Ads／Meta 公開內容限制提出風險說明；不可宣稱一定可通過平台審核。
 
@@ -90,6 +98,7 @@ Meta 的付費廣告尤其不應直接或間接推銷成人商品，例如商品
 | 路徑 | 用途 | 常見修改時機 |
 | --- | --- | --- |
 | `site-content.js` | 最新消息的開關、標籤、標題、說明、圖片及註記 | 新增或替換最新消息時優先修改 |
+| `images/products/catalog.js` | 商品展示目錄、排序、更新小標題與圖片替代文字 | Store Ads 新增、更新或淘汰商品時唯一需要更新的商品設定檔 |
 | `images/` | 所有公開圖片 | 收到新公告圖、門市照片、Logo 或說明圖時 |
 | `index.html` | 網站固定內容與門市相簿項目 | 新增相簿圖片、固定區塊或變更固定文案時 |
 | `line/index.html` | Google Ads 使用的 LINE 專屬引導頁 | 修改 LINE 頁面文案、按鈕或追蹤設定時 |

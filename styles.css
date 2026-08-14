@@ -89,6 +89,7 @@ button { font: inherit; }
   .product-heading { margin-bottom: 25px; }
   .product-grid { display: grid; gap: 16px; }
   .product-card { padding: 20px; background: var(--white); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 10px 28px rgba(15, 25, 38, .06); }
+  .product-update { margin: 0 0 7px; color: #62789a; font-size: .76rem; font-weight: 800; letter-spacing: .04em; }
   .product-card h3 { margin: 0 0 8px; color: var(--ink); font-size: 1.2rem; }
   .product-card p { margin: 0 0 15px; color: var(--muted); }
   .product-card small { display: block; margin-top: 14px; color: #687483; font-size: .78rem; }
