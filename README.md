@@ -2,10 +2,10 @@
 
 本資料夾是「情趣時光 24H 無人自助店」靜態網站的唯一發布來源。
 
-- 本機來源：`D:\CASE\WebSite`
+- 本機來源：`D:\CASE\SC行銷\WebSite`
 - GitHub Repository：`VibrantBlue28/vibrantblue28.github.io`
 - 公開網站：<https://vibrantblue28.github.io/>
-- 一鍵發布工具：`D:\CASE\SmartCabiNet\PublishSecretTimeWebsite.cmd`
+- 一鍵發布工具：`D:\CASE\SC行銷\tools\PublishWebsite.cmd`
 
 > 本 README 會隨網站一起上傳到公開 Repository。禁止在此資料夾放入密碼、Token、金鑰、連線字串、個資或其他不應公開的資料。
 
@@ -36,11 +36,11 @@
 
 ## 新專案交接與待辦事項（2026-08）
 
-本網站已從 `D:\CASE\SmartCabiNet\SpecDocs\WebSite` 搬移至目前根目錄 `D:\CASE\WebSite`。新 AI agent 開始工作時，必須先讀本 README、檢查 `index.html`、`site-content.js`、`styles.css` 與 `Product_Images`，再進行任何修改。
+本網站目前位於 `D:\CASE\SC行銷\WebSite`，是 SC行銷工作區中唯一的公開網站來源。新 AI agent 開始工作時，必須先讀本 README、檢查 `index.html`、`site-content.js`、`styles.css` 與 `Product_Images`，再進行任何修改。
 
 ### 目前已知 SEO 狀態與待辦
 
-正式網站為 <https://vibrantblue28.github.io/>。首頁已提供 canonical URL、`robots.txt` 與 `sitemap.xml`；Google 是否已發現或建立索引仍應透過 Google Search Console 的「網址審查」確認，不可只用搜尋排名推測。
+正式網站為 <https://vibrantblue28.github.io/>。首頁已提供 canonical URL、`robots.txt` 與 `sitemap.xml`；2026-08-12 已以 `vibrantblue28@gmail.com` 完成 Search Console 網址前綴資源驗證，並提交 `sitemap.xml`。首頁網址審查當時仍顯示尚未收錄；索引申請曾回傳暫時性錯誤，應於數小時後或隔日重試。不可只用搜尋排名推測索引狀態，應以 Search Console 的「網址審查」確認。
 
 SEO 工作順序：
 
@@ -48,30 +48,27 @@ SEO 工作順序：
 2. 維持 `robots.txt` 允許搜尋引擎檢索，並列出 Sitemap URL。
 3. 維持 `sitemap.xml` 收錄首頁、`/store/` 與 `/line/`。
 4. 維持首頁 `og:url`、`og:image`，並確認結構化資料包含正式 `url` 與適當的 `image`。
-5. 建立並驗證 Google Search Console 的 URL-prefix 資源：`https://vibrantblue28.github.io/`。
-6. 在 Search Console 提交 Sitemap，使用網址審查工具測試首頁後要求建立索引。
+5. 已建立並驗證 Google Search Console 的 URL-prefix 資源：`https://vibrantblue28.github.io/`。
+6. 已提交 Sitemap；待 Google 讀取後確認狀態，並重試首頁的索引申請。
 7. 在 Google 商家檔案加入正式官網網址。
 
 SEO 變更完成後，要以正式網站檢查 HTTP 回應、Canonical、robots、Sitemap，並提醒使用者建立索引可能需要數天到數週，且不保證立即出現在搜尋結果。
 
-### 商品圖片與展示區待辦
+### 商品展示管理規格（2026-08-14）
 
-商品圖片根目錄為 `Product_Images/`，目前有三個資料夾：
+首頁商品展示區位於「門市特色」之後、「門市環境」之前；目前已建立 `KISSTOY Doris` 商品卡，使用 7 張使用者提供的展示圖片。商品資料集中於 `site-content.js`，圖片放在 `images/products/<商品代號>/`；不可直接引用 `Product_Images/`。
 
-- `【涉い井】玻尿酸潤滑液`
-- `【涉い井】男外用久戰濕巾加強版-8片裝`
-- `young系列情趣萌品`
+後續以 Shop Ads Studio 新增商品時，必須遵守以下規格：
 
-使用者預計先挑兩項商品，每項提供 2 至 3 張圖片。接手 agent 必須先逐張檢視圖片與包裝文字，不得猜測商品名稱、效果、價格、成分、活動日期或庫存。
+1. 首頁商品展示最多保留 **3 個商品**。
+2. 新增商品一律放在清單最上方；既有商品依時間排列在下方。
+3. 新增第 4 個商品時，Studio 必須同時移除清單中最舊的商品及其網站展示設定，使清單維持 3 個商品。實際檔案是否清理須另有明確操作，不可因更新展示而自行刪除來源素材。
+4. 每個商品卡片上方要有小標題，紀錄該商品的新增／更新日期與簡短說明，例如：`2026-08-14｜新品展示`。後續資料結構應以明確欄位保存，不可只將日期散落在 HTML。
+5. 商品圖片由 Studio 產出或整理後，統一使用 **1024 × 1024** 正方形素材。網站圖片必須完整以 1:1 顯示、不可裁切；手機版一次顯示一張完整圖片，可左右滑動切換下一張。
+6. 每項商品須保留：名稱、客觀短說明、圖片、更新小標題，以及「實際庫存、售價與包裝版本以門市現場為準」註記。不得猜測商品名稱、效果、價格、成分、活動日期或庫存。
+7. Studio 的「新增商品」與「移除最舊商品」是網站內容管理操作，不等於發布；仍須由使用者明確要求後，才能使用發布工具更新 GitHub Pages。
 
-首頁商品展示區預計置於「最新消息」之後、「門市環境」之前：
-
-- 桌面版：使用區段內的 sticky 商品圖片展示；固定效果只能在商品區塊內生效，離開該區塊後自然結束，不可遮擋地圖、LINE 或其他內容。
-- 手機版：使用一般商品卡片與左右滑動圖片，不使用常駐懸浮廣告。
-- 每項商品：名稱、客觀短說明、2 至 3 張圖片、圖片切換控制及「實際庫存與售價以門市現場為準」註記。
-- 商品內容應集中設定在 `site-content.js` 或新增的明確設定檔，不要將多個商品資料散落在 HTML。
-
-在使用者提供圖片並確認商品資訊前，不得自行實作特定商品文案或將 `Product_Images` 直接公開引用。
+接手 agent 在將素材公開前，仍必須逐張檢視圖片與包裝文字，並依本 README 的 Google Ads／Meta 公開內容限制提出風險說明；不可宣稱一定可通過平台審核。
 
 ### Google 與 Meta 的公開內容限制
 
@@ -205,19 +202,19 @@ AI agent 至少要完成：
 使用者確認內容並明確要求發布後，可雙擊：
 
 ```text
-D:\CASE\SmartCabiNet\PublishSecretTimeWebsite.cmd
+D:\CASE\SC行銷\tools\PublishWebsite.cmd
 ```
 
 或在 PowerShell 執行：
 
 ```powershell
-& 'D:\CASE\SmartCabiNet\PublishSecretTimeWebsite.ps1'
+& 'D:\CASE\SC行銷\tools\PublishWebsite.ps1'
 ```
 
 只想檢查異動、不建立 commit 或 push 時：
 
 ```powershell
-& 'D:\CASE\SmartCabiNet\PublishSecretTimeWebsite.ps1' -DryRun
+& 'D:\CASE\SC行銷\tools\PublishWebsite.ps1' -DryRun
 ```
 
 發布工具會：

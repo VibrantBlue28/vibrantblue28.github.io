@@ -58,6 +58,48 @@
         }
     }
 
+    function setupProducts() {
+        var container = document.querySelector("[data-products]");
+        var products = window.SITE_CONTENT && window.SITE_CONTENT.products;
+        if (!container || !Array.isArray(products) || products.length === 0) return;
+
+        products.forEach(function (product) {
+            if (!product || !product.name || !Array.isArray(product.images) || product.images.length === 0) return;
+            var card = document.createElement("article");
+            var heading = document.createElement("h3");
+            var description = document.createElement("p");
+            var media = document.createElement("div");
+            var footnote = document.createElement("small");
+
+            card.className = "product-card";
+            heading.textContent = product.name;
+            description.textContent = product.description || "門市商品展示。";
+            media.className = "product-media";
+            footnote.textContent = product.footnote || "實際資訊以門市現場為準。";
+
+            product.images.forEach(function (item) {
+                if (!item || !item.path) return;
+                var button = document.createElement("button");
+                var image = document.createElement("img");
+                button.className = "product-image";
+                button.type = "button";
+                button.setAttribute("data-gallery-src", item.path);
+                button.setAttribute("data-gallery-caption", item.alt || product.name);
+                image.src = item.path;
+                image.alt = item.alt || product.name;
+                image.width = 1000;
+                image.height = 1000;
+                image.loading = "lazy";
+                image.decoding = "async";
+                button.appendChild(image);
+                media.appendChild(button);
+            });
+
+            card.append(heading, description, media, footnote);
+            container.appendChild(card);
+        });
+    }
+
     function setupLightbox() {
         var dialog = document.querySelector(".lightbox");
         if (!dialog) return;
@@ -116,6 +158,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         setupNavigation();
         setupLatestNews();
+        setupProducts();
         setupLightbox();
     });
 })();
