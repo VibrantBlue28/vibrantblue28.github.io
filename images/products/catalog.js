@@ -3,9 +3,37 @@ window.PRODUCT_CATALOG = {
     "version": 1,
     "products": [
         {
+            "updatedLabel": "2026-08-15｜新品展示",
+            "name": "請填寫商品名稱。",
+            "description": "請填寫商品特色與已確認的資訊。",
+            "footnote": "實際庫存、售價與包裝版本以門市現場為準。",
+            "images": [
+                {
+                    "path": "images/products/20260815-01/01.png",
+                    "alt": "請填寫商品名稱。－日本品牌精緻設計隨身噴霧"
+                },
+                {
+                    "path": "images/products/20260815-01/02.png",
+                    "alt": "請填寫商品名稱。－溫和調配成分與透明液體質地"
+                },
+                {
+                    "path": "images/products/20260815-01/03.png",
+                    "alt": "請填寫商品名稱。－通過多項安全檢測與專業認證"
+                },
+                {
+                    "path": "images/products/20260815-01/04.png",
+                    "alt": "請填寫商品名稱。－專業品牌打造個人護理選擇"
+                },
+                {
+                    "path": "images/products/20260815-01/05.png",
+                    "alt": "請填寫商品名稱。－商品資訊總覽"
+                }
+            ]
+        },
+        {
             "updatedLabel": "2026-08-14｜新品展示",
             "name": "玻尿酸潤滑液",
-            "description": "請填寫商品特色與已確認的資訊。",
+            "description": "商品與包裝外觀展示，圖片內容僅供辨識與參考。",
             "footnote": "實際庫存、售價與包裝版本以門市現場為準。",
             "images": [
                 {

@@ -5,7 +5,7 @@
 - 本機來源：`D:\CASE\SC行銷\WebSite`
 - GitHub Repository：`VibrantBlue28/vibrantblue28.github.io`
 - 公開網站：<https://vibrantblue28.github.io/>
-- 一鍵發布工具：`D:\CASE\SC行銷\tools\PublishWebsite.cmd`
+- 一鍵發布工具：`D:\CASE\SC行銷\tools\PublishWebsite.cmd`（工具位於工作區，不屬於本公開 Repository；執行前必須確認實際檔案存在）
 
 > 本 README 會隨網站一起上傳到公開 Repository。禁止在此資料夾放入密碼、Token、金鑰、連線字串、個資或其他不應公開的資料。
 
@@ -36,11 +36,11 @@
 
 ## 新專案交接與待辦事項（2026-08）
 
-本網站目前位於 `D:\CASE\SC行銷\WebSite`，是 SC行銷工作區中唯一的公開網站來源。新 AI agent 開始工作時，必須先讀本 README、檢查 `index.html`、`site-content.js`、`styles.css` 與 `Product_Images`，再進行任何修改。
+本網站目前位於 `D:\CASE\SC行銷\WebSite`，是 SC行銷工作區中唯一的公開網站來源。新 AI agent 開始工作時，必須先讀本 README 與 `AGENTS.md`，檢查 `index.html`、`site-content.js`、`script.js`、`styles.css` 與 `images/products/`，再進行任何修改。`Product_Images/` 只是 Git 忽略的本機原始素材預留目錄，不是網站公開商品來源。
 
 ### 目前已知 SEO 狀態與待辦
 
-正式網站為 <https://vibrantblue28.github.io/>。首頁已提供 canonical URL、`robots.txt` 與 `sitemap.xml`；2026-08-12 已以 `vibrantblue28@gmail.com` 完成 Search Console 網址前綴資源驗證，並提交 `sitemap.xml`。首頁網址審查當時仍顯示尚未收錄；索引申請曾回傳暫時性錯誤，應於數小時後或隔日重試。不可只用搜尋排名推測索引狀態，應以 Search Console 的「網址審查」確認。
+正式網站為 <https://vibrantblue28.github.io/>。首頁已提供 canonical URL、`robots.txt` 與 `sitemap.xml`；2026-08-12 已完成 Search Console 網址前綴資源驗證，並提交 `sitemap.xml`。2026-08-15 實際檢查首頁、`robots.txt` 與 `sitemap.xml` 皆回傳 HTTP 200，且正式站與 GitHub `main` 當時的最新版本一致。Search Console 的上次已知狀態仍是首頁尚未收錄、索引申請曾回傳暫時性錯誤；此狀態可能已變更，必須登入 Search Console 以「網址審查」重新確認，不可只用搜尋排名推測。
 
 SEO 工作順序：
 
@@ -56,7 +56,9 @@ SEO 變更完成後，要以正式網站檢查 HTTP 回應、Canonical、robots�
 
 ### 商品展示管理規格（2026-08-14）
 
-首頁商品展示區位於「門市特色」之後、「門市環境」之前；目前已建立 `KISSTOY Doris` 商品卡，使用 7 張使用者提供的展示圖片。商品展示是一個獨立區塊，只讀取 `images/products/`：圖片放在 `images/products/<商品代號>/`，目錄與文案放在 `images/products/catalog.js`。首頁、`site-content.js` 與其他網站檔案不再保存商品資料。
+首頁商品展示區位於「門市特色」之後、「門市環境」之前；2026-08-15 目前有 2 筆商品：最新的「玻尿酸潤滑液」使用 8 張 1024×1024 圖片，「KISSTOY Doris」使用 7 張 1000×1000 圖片。商品展示是一個獨立區塊，只讀取 `images/products/`：圖片放在 `images/products/<商品代號>/`，目錄與文案放在 `images/products/catalog.js`。首頁、`site-content.js` 與其他網站檔案不再保存商品資料。
+
+2026-08-15 使用者已確認：目前 Shop Ads 商品照片不用於 Google 或 Meta 付費廣告，只規劃為 Facebook 粉絲團自然貼文素材。這項確認不代表圖片可投放廣告；若同一素材另行放到官網，仍屬公開網頁內容，而且網站的 LINE / 門市 Google Ads 專屬頁仍必須維持中性、客觀的門市資訊。
 
 後續以 Shop Ads Studio 新增商品時，必須遵守以下規格：
 
@@ -111,7 +113,7 @@ Meta 的付費廣告尤其不應直接或間接推銷成人商品，例如商品
 
 ## 新增或更新「最新消息」
 
-網站目前顯示一則最新消息。AI agent 應採以下流程：
+網站目前將最新消息設為隱藏（`enabled: false`）。新增或重新開啟消息時，AI agent 應採以下流程：
 
 1. 將新公告圖片放到 `images`，使用新的描述性檔名。
 2. 修改 `site-content.js` 的 `latestNews`。
@@ -168,10 +170,13 @@ window.SITE_CONTENT = {
 
 | 用途 | 目前檔案 | 主要引用位置 |
 | --- | --- | --- |
-| 品牌 Logo | `images/logo_1.png` | `index.html` Header |
-| 首頁門市主圖 | `images/store_front_2.jpg` | `index.html` Hero |
+| 品牌 Logo | `images/logo_1.png` | 首頁、LINE 與門市頁 Header / favicon |
+| 行動版 Hero | `images/logo_2.png` | `index.html` Hero（行動裝置） |
+| 桌面版門市主圖 | `images/store_front_2.jpg` | `index.html` Hero（桌面裝置） |
 | 購買方式說明 | `images/purch_nethor_1.png` | `index.html` Guide |
 | LINE QR Code | `images/line_logo.png` | `index.html` Contact |
+
+2026-08-15 已依行動裝置用途將 `logo_1.png` 縮為 512×512，將行動版 Hero `logo_2.png` 縮為 704×1524，保留 PNG 透明度與原始比例。後續更換時不應無條件恢復為數千像素、數 MB 的大圖。
 
 ## LINE 專屬引導頁
 
@@ -207,6 +212,8 @@ AI agent 至少要完成：
 - 若有改動版面或互動，使用瀏覽器檢查桌面版與行動版。
 
 ## 發布到 GitHub Pages
+
+發布工具由 `D:\CASE\SC行銷` 工作區管理，不放在本公開 `WebSite` repository。因此執行前必須先確認下列檔案實際存在；若不存在，停止發布並回報，不得自行拼凑其他發布指令。
 
 使用者確認內容並明確要求發布後，可雙擊：
 
