@@ -103,6 +103,17 @@
         });
     }
 
+    function loadProductCatalog() {
+        var script = document.createElement("script");
+        script.src = "images/products/catalog.js?v=" + Date.now();
+        script.onload = setupProducts;
+        script.onerror = function () {
+            var section = document.querySelector("[data-products]");
+            if (section) section.hidden = true;
+        };
+        document.head.appendChild(script);
+    }
+
     function setupLightbox() {
         var dialog = document.querySelector(".lightbox");
         if (!dialog) return;
@@ -161,7 +172,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         setupNavigation();
         setupLatestNews();
-        setupProducts();
+    loadProductCatalog();
         setupLightbox();
     });
 })();
